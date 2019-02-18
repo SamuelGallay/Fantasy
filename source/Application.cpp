@@ -1,5 +1,7 @@
 #include "Application.hpp"
 
+#include "ResourcePath.hpp"
+
 Application::Application() : window(sf::VideoMode(1024, 512), "Le Monde"), niveau("level.txt")
 {
     window.setVerticalSyncEnabled(true);

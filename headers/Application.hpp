@@ -1,12 +1,9 @@
 #ifndef Application_hpp
 #define Application_hpp
 
-#include <SFML/Audio.hpp>
-#include <SFML/Graphics.hpp>
-#include <fstream>
-#include <iostream>
-#include "Player.hpp"
 
+#include <SFML/Graphics.hpp>
+#include "Player.hpp"
 #include "Level.hpp"
 
 

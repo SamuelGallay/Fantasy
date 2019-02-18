@@ -1,11 +1,16 @@
 #include "Level.hpp"
+#include "ResourcePath.hpp"
 
+#include <fstream>
+#include <algorithm>
 #include <cstdlib>
 #include <ctime>
 
 Level::Level(std::string file)
 {
     std::ifstream stream(resourcePath() + file);
+    //std::ifstream stream = loadStream(file);
+    
     int x=0, y=0;
     stream >> x >> y;
     dim = sf::Vector2i(x,y);
@@ -18,7 +23,7 @@ Level::Level(std::string file)
         }
     }
     
-    map.load(resourcePath() + "textures.png", sf::Vector2u(32, 32), level, x, y);
+    map.load("textures.png", sf::Vector2u(32, 32), level, x, y);
     
     srand(time(NULL));
     while (goldList.size()<20)
@@ -28,8 +33,7 @@ Level::Level(std::string file)
             goldList.push_back(g);
     }
     
-    if (!goldTexture.loadFromFile(resourcePath() + "gold.png"))
-        return false;
+    goldTexture.loadFromFile(resourcePath() + "gold.png");
     
     goldListToMap();
     

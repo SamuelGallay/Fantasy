@@ -1,12 +1,9 @@
 #ifndef Level_hpp
 #define Level_hpp
 
-#include "ResourcePath.hpp"
-
 #include "TileMap.hpp"
-#include <fstream>
 #include <vector>
-#include <algorithm>
+
 
 struct Inventory{
     int gold;
