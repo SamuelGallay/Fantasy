@@ -23,7 +23,7 @@ set(
 )
 
 add_executable(Fantasy ${SOURCES})
-target_link_libraries(Pong sfml-graphics sfml-audio)
+target_link_libraries(Fantasy sfml-graphics sfml-audio)
 
 # Install executable
 install(TARGETS Fantasy
