@@ -45,6 +45,7 @@ Level::Level(std::string file)
     
     prelude.openFromFile(resourcePath() + "prelude.ogg");
     prelude.setLoop(true);
+    prelude.setVolume(60);
     prelude.play();
 }
 
@@ -80,7 +81,7 @@ bool Level::operator()(sf::Vector2i pos)
         }
     }
     else
-        vide = true;
+        vide = false;
     
     return vide;
 }
