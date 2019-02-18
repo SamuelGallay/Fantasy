@@ -3,9 +3,6 @@
 
 #include <string>
 
-std::string resourcePath(void)
-{
-  return "media/";
-}
+std::string resourcePath(void);
 
 #endif

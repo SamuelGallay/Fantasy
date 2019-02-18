@@ -20,6 +20,7 @@ set(
 	sources/Player.cpp
 	sources/Level.cpp
 	sources/TileMap.cpp
+	sources/ResourcePath.cpp
 )
 
 add_executable(Fantasy ${SOURCES})
