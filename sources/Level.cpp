@@ -9,7 +9,6 @@
 Level::Level(std::string file)
 {
     std::ifstream stream(resourcePath() + file);
-    //std::ifstream stream = loadStream(file);
     
     int x=0, y=0;
     stream >> x >> y;
@@ -38,6 +37,15 @@ Level::Level(std::string file)
     goldListToMap();
     
     stuff.gold = 0;
+    
+    coinBuffer.loadFromFile(resourcePath() + "coin.wav");
+    coinSound.setBuffer(coinBuffer);
+    
+    victory.openFromFile(resourcePath() + "ffvi.ogg");
+    
+    prelude.openFromFile(resourcePath() + "prelude.ogg");
+    prelude.setLoop(true);
+    prelude.play();
 }
 
 void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -61,9 +69,14 @@ bool Level::operator()(sf::Vector2i pos)
         it = find(goldList.begin(), goldList.end(), pos);
         if(it != goldList.end())
         {
+            coinSound.play();
             goldList.erase(it);
             goldListToMap();
             stuff.gold++;
+            if(goldList.size() == 0){
+                prelude.stop();
+                victory.play();
+            }
         }
     }
     else

@@ -82,7 +82,12 @@ void Application::run(){
 
 
 void Application::drawInventory(){
-    sf::Text text("Gold : " + std::to_string(niveau.getInventory().gold), police);
+    int g = niveau.getInventory().gold;
+    if(g == 20)
+    {
+        tempsDeplacement = 0.1f;
+    }
+    sf::Text text("Gold : " + std::to_string(g), police);
     text.setFillColor(sf::Color::Yellow);
     window.setView(sf::View(sf::FloatRect( 0.f, 0.f, window.getSize().x, window.getSize().y) ) );
     window.draw(text);

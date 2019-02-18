@@ -3,6 +3,7 @@
 
 #include "TileMap.hpp"
 #include <vector>
+#include <SFML/Audio.hpp>
 
 
 struct Inventory{
@@ -25,9 +26,11 @@ private:
     sf::VertexArray goldMap;
     std::vector<sf::Vector2i> goldList;
     sf::Texture goldTexture;
-    
+    sf::SoundBuffer coinBuffer;
+    sf::Sound coinSound;
     Inventory stuff;
-    
+    sf::Music victory;
+    sf::Music prelude;
     void goldListToMap();
 };
 

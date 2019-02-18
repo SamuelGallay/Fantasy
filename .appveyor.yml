@@ -30,6 +30,9 @@ before_build:
 build:
   project: build\INSTALL.vcxproj
 
+after_build:
+  - cp SFML/install/bin/openal32.dll install/
+
 artifacts:
   - path: install
     name: fantasy-windows-32bits
