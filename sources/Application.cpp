@@ -9,7 +9,7 @@ Application::Application() : window(sf::VideoMode(1024, 512), "Le Monde"), nivea
     position = sf::Vector2i(8, 4);
     oldPosition = sf::Vector2i(8, 4);
     
-    tempsDeplacement = 0.2f;
+    tempsDeplacement = 0.05f;
     zoom = 2.f;
     
     police.loadFromFile(resourcePath() + "FiraSans-Light.otf");

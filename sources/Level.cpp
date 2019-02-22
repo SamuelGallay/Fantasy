@@ -1,5 +1,6 @@
 #include "Level.hpp"
 #include "ResourcePath.hpp"
+#include "Perlin.hpp"
 
 #include <fstream>
 #include <algorithm>
@@ -10,15 +11,27 @@ Level::Level(std::string file)
 {
     std::ifstream stream(resourcePath() + file);
     
-    int x=0, y=0;
-    stream >> x >> y;
+    int x=512, y=512;
+    //stream >> x >> y;
+    
+    
     dim = sf::Vector2i(x,y);
     
     level = std::vector<std::vector<int> >(x, std::vector<int>(y, 0));
     
     for(int j=0; j<y; j++){
         for(int i=0; i<x; i++){
-            stream >> level[i][j];
+            //stream >> level[i][j];
+            //level[i][j] = (Get2DPerlinNoiseValue(i,j, 10)+1)*100;
+            float perlin = Get2DPerlinNoiseValue(i,j, 10);
+            if ( perlin > 0.25)
+                level[i][j] = 11*23+6; //Montagnes
+            else if (perlin > 0.05)
+                level[i][j] = 23; //Foret
+            else if ( perlin > -0.3)
+                level[i][j] = 0;// Herbe
+            else
+                level[i][j] = 90; // Eau
         }
     }
     
@@ -61,7 +74,7 @@ bool Level::operator()(sf::Vector2i pos)
 {
     bool vide;
     if(pos.x < dim.x && pos.y < dim.y && pos.x >= 0 && pos.y >= 0){
-        if(level[pos.x][pos.y] == 90)
+        if(level[pos.x][pos.y] == 90 || level[pos.x][pos.y] == 11*23+6)
             vide = false;
         else
             vide = true;
@@ -81,7 +94,7 @@ bool Level::operator()(sf::Vector2i pos)
         }
     }
     else
-        vide = false;
+        vide = true;
     
     return vide;
 }
